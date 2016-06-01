@@ -39,9 +39,12 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		@user.destroy
 		respond_to do |format|
-			format.html { redirect_to users_url, notice: "Usuário deletado com sucesso!", alert: "success" }
+			if @user.destroy
+				format.html { redirect_to users_url, notice: "Usuário deletado com sucesso!", alert: "success" }
+			else
+				format.html { redirect_to users_url, notice: @user.errors.full_messages, alert: "danger" }
+			end
 		end
 	end
 
