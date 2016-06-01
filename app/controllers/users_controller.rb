@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 	before_filter :require_user
 	before_filter :set_title
 	before_filter :set_user, only: [:edit, :update, :destroy]
-	before_filter :dont_delete_admin, only: [:destroy]
 	skip_before_filter :verify_authenticity_token, :only => [:destroy]
 
 	def index
@@ -54,10 +53,6 @@ class UsersController < ApplicationController
 		def set_user
 			@user = User.find(params[:id])
 		end
-
-    	def dont_delete_admin
-      		redirect_to users_url, notice: 'Não é possível deletar essa conta', alert: "danger" if @user.id == admin_user.id
-    	end
 
 		def user_params
 			params.require(:user).permit(:name, :email, :password, :password_confirmation)
