@@ -47,6 +47,8 @@ gem "therubyracer"
 gem "less-rails", '~> 2.7.1' # 2.7.1 for undefined method `register_preprocessor' for nil:NilClass
 gem "twitter-bootstrap-rails"
 
+gem 'paperclip'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
