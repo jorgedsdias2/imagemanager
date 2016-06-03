@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'uploads/index'
+
 	root to: 'sessions#new'
 
 	resources :users
 	resources :sessions
 	resources :pages
+	resources :uploads
 
 	get 'index', to: 'sessions#index'
 	get 'panel', to: 'sessions#new'
