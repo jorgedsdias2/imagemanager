@@ -1,8 +1,0 @@
-<% @uploads.each do |u| %>
-    X
-<% end %>
-
-<%= form_for Upload.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
-    <%= f.file_field :upload %>
-    <%= f.submit %>
-<% end %>
