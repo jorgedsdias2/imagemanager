@@ -6,6 +6,10 @@ class UploadsController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:create, :destroy]
 
 	def index
+		@uploads = Upload.all
+	end
+
+	def new
 		@upload = Upload.new
 	end
 
@@ -27,10 +31,10 @@ class UploadsController < ApplicationController
 		respond_to do |format|
 			if success
 				format.html { redirect_to uploads_url, notice: "Upload realizado com sucesso!", alert: "success" }
-				format.json { render json: success, status: :created }
+				format.json { render json: true, status: :created }
 			else
-				format.html { render :index, notice: "Upload não realizado com sucesso!", alert: "danger" }
-				format.json { render json: success, status: :unprocessable_entity }
+				format.html { render uploads_url, notice: "Upload não realizado!", alert: "danger" }
+				format.json { render json: false, status: :unprocessable_entity }
 			end
 		end
 	end

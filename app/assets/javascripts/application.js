@@ -17,3 +17,4 @@
 //= require bootstrap
 //= require_tree .
 $('.dropdown-toggle').dropdown();
+$('#side-menu').metisMenu();
