@@ -9,7 +9,6 @@
                 <div class="col-lg-12">
 					<%= form_for @upload, url: uploads_path, html: { multipart: true } do |f| %>
 						<%= f.file_field :images, multiple: true %><br /><br />
-						<!--<%= f.submit 'Enviar', class: 'btn btn-primary' %>-->
 					<% end %>
                 </div>
             </div>
@@ -19,6 +18,22 @@
 <script type="text/javascript">
 	$("#upload_images").fileinput({
 		theme: "fa",
-		uploadUrl: "<%= uploads_path %>"
+		uploadUrl: "<%= uploads_path %>",
+        initialPreview: [
+            <% @uploads.each do |u| %>
+                '<%= image_tag(u.image.url, class: 'kv-preview-data file-preview-image', style: "width:auto;height:160px;") %>',
+            <% end %>
+        ],
+        initialPreviewConfig: [
+            <% @uploads.each do |u| %>
+            {
+                caption: '<%= u.image_file_name %>',
+                width: '300px',
+                url: '<%= delete_upload_url %>',
+                key: <%= u.id %>,
+                extra: {id: <%= u.id %>}
+            },
+            <% end %>
+        ]
 	});
 </script>

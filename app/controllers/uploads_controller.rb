@@ -5,11 +5,11 @@ class UploadsController < ApplicationController
 	before_filter :set_upload, only: [:edit, :update, :destroy]
 	skip_before_filter :verify_authenticity_token, :only => [:create, :destroy]
 
-	def index
-		@uploads = Upload.all
+	def index		
 	end
 
 	def new
+		@uploads = Upload.all
 		@upload = Upload.new
 	end
 
@@ -30,11 +30,21 @@ class UploadsController < ApplicationController
 
 		respond_to do |format|
 			if success
-				format.html { redirect_to uploads_url, notice: "Upload realizado com sucesso!", alert: "success" }
-				format.json { render json: true, status: :created }
+				format.json { render :json => { success: "Upload realizado com sucesso!" }, status: :created }
 			else
-				format.html { render uploads_url, notice: "Upload não realizado!", alert: "danger" }
-				format.json { render json: false, status: :unprocessable_entity }
+				format.json { render :json => { error: "Erro ao enviar upload" }, status: :unprocessable_entity }
+			end
+		end
+	end
+
+	def destroy
+		@upload.image.destroy
+
+		respond_to do |format|
+			if @upload.destroy
+				format.json { render :json => { success: "Upload deletado com sucesso!", status: :deleted } }
+			else
+				format.json { render :json => { error: "Upload não pode ser deletado" }, status: :unprocessable_entity }
 			end
 		end
 	end
