@@ -15,6 +15,9 @@
 //= require turbolinks
 //= require ckeditor/init
 //= require bootstrap
-//= require_tree .
+//= require_tree ./plugins
+//= require ./sb-admin-2
+//= require ./fileinput/fileinput.min.js
+//= require ./fileinput/themes/fa/fa.js
 $('.dropdown-toggle').dropdown();
 $('#side-menu').metisMenu();
