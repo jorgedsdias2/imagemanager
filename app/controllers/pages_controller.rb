@@ -44,9 +44,12 @@ class PagesController < ApplicationController
 	end
 
 	def destroy
-		@page.destroy
 		respond_to do |format|
-			format.html { redirect_to pages_url, notice: 'Página deletada com sucesso!', alert: 'success' }
+			if @page.destroy
+				format.html { redirect_to pages_url, notice: 'Página deletada com sucesso!', alert: 'success' }
+			else
+				format.html { redirect_to pages_url, notice: 'Página não pode ser deletada!', alert: 'danger' }
+			end
 		end
 	end
 

@@ -5,4 +5,13 @@ class Page < ActiveRecord::Base
 	validates :title, presence: true, uniqueness: true
 	validates :status, presence: true
 	validates :user_id, presence: true
+
+	before_destroy :dont_delete_page_with_image
+
+	private
+		def dont_delete_page_with_image
+			if self.uploads.any?
+				return false
+			end
+		end
 end
