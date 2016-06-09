@@ -48,7 +48,7 @@ class PagesController < ApplicationController
 			if @page.destroy
 				format.html { redirect_to pages_url, notice: 'Página deletada com sucesso!', alert: 'success' }
 			else
-				format.html { redirect_to pages_url, notice: 'Página não pode ser deletada!', alert: 'danger' }
+				format.html { redirect_to pages_url, notice: 'Erro: ' + @page.errors.full_messages.to_s, alert: 'danger' }
 			end
 		end
 	end

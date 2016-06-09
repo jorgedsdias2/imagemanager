@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 
 		def dont_delete_administrator
 			if self.role == 'administrator'
+				errors.add(:base, "Não se pode deletar um usuário administrator")
 				return false
 			end
 		end	

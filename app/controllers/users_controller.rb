@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 			if @user.destroy
 				format.html { redirect_to users_url, notice: "Usuário deletado com sucesso!", alert: "success" }
 			else
-				format.html { redirect_to users_url, notice: "Usuário não pode ser deletado!", alert: "danger" }
+				format.html { redirect_to users_url, notice: "Erro: " + @user.errors.full_messages.to_s, alert: "danger" }
 			end
 		end
 	end

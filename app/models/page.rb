@@ -7,10 +7,11 @@ class Page < ActiveRecord::Base
 	validates :user_id, presence: true
 
 	before_destroy :dont_delete_page_with_image
-
+	
 	private
 		def dont_delete_page_with_image
 			if self.uploads.any?
+				errors.add(:base, "Não se pode deletar páginas com imagens")
 				return false
 			end
 		end

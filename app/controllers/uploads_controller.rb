@@ -26,7 +26,7 @@ class UploadsController < ApplicationController
 			if success
 				format.json { render :json => { success: "Upload realizado com sucesso!" }, status: :created }
 			else
-				format.json { render :json => { error: "Erro ao enviar upload: " + error }, status: :unprocessable_entity }
+				format.json { render :json => { error: "Erro: " + error }, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -38,7 +38,7 @@ class UploadsController < ApplicationController
 			if @upload.destroy
 				format.json { render :json => { success: "Upload deletado com sucesso!", status: :deleted } }
 			else
-				format.json { render :json => { error: "Upload não pode ser deletado" }, status: :unprocessable_entity }
+				format.json { render :json => { error: "Erro: " + @upload.errors.full_messages.to_s }, status: :unprocessable_entity }
 			end
 		end
 	end
