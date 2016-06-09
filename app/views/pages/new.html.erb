@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Páginas</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<% if flash[:notice] %>
+    <div class="alert alert-<%= alert %>" role="alert">
+        <p id="notice"><%= notice %></p>
+    </div>
+<% end %>
+
+<ul class="breadcrumb">
+    <li><%= link_to 'Home', dashboard_url %></li>
+    <li><%= link_to 'Listagem de Páginas', pages_path %></li>
+    <li class="active">Cadastro de Páginas</li>
+</ul>
+
+<div class="row">
+    <div class="col-lg-12">
+	   <%= render 'form' %>
+    </div>
+</div>
+<!-- /.row -->

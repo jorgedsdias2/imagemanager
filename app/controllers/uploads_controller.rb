@@ -5,34 +5,28 @@ class UploadsController < ApplicationController
 	before_filter :set_upload, only: [:edit, :update, :destroy]
 	skip_before_filter :verify_authenticity_token, :only => [:create, :destroy]
 
-	def index		
-	end
-
-	def new
-		@uploads = Upload.all
-		@upload = Upload.new
-	end
-
 	def create
 		success = false
+		error = nil
 
 		if upload_params[:images]
 			upload_params[:images].each do |image|
-				@upload = Upload.create(image: image)
+				@upload = Upload.create(page_id: upload_params[:page_id], image: image)
 
 				if @upload.save
 					success = true
 				else
 					success = false
+					error = @upload.errors.full_messages.to_s
 				end
 			end
 		end
-
+		
 		respond_to do |format|
 			if success
 				format.json { render :json => { success: "Upload realizado com sucesso!" }, status: :created }
 			else
-				format.json { render :json => { error: "Erro ao enviar upload" }, status: :unprocessable_entity }
+				format.json { render :json => { error: "Erro ao enviar upload: " + error }, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -59,6 +53,6 @@ class UploadsController < ApplicationController
 		end
 
 		def upload_params
-			params.require(:upload).permit(images: [])
+			params.require(:upload).permit(:page_id, {images: []})
 		end
 end

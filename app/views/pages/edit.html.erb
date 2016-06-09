@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Páginas</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<% if flash[:notice] %>
+    <div class="alert alert-<%= alert %>" role="alert">
+        <p id="notice"><%= notice %></p>
+    </div>
+<% end %>
+
+<ul class="breadcrumb">
+    <li><%= link_to 'Home', dashboard_url %></li>
+    <li><%= link_to 'Listagem de Páginas', pages_path %></li>
+    <li class="active">Editar Página</li>
+</ul>
+
+<div class="row">
+    <div class="col-lg-12">
+    
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#paginas" aria-controls="paginas" role="tab" data-toggle="tab">Páginas</a></li>
+            <li role="presentation"><a href="#imagens" aria-controls="imagens" role="tab" data-toggle="tab">Imagens</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="paginas">
+                <br /><%= render 'form' %>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="imagens">
+                <br /><%= render 'form_upload' %>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- /.row -->

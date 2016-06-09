@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'page/index'
+
   get 'uploads/index'
 
 	root to: 'sessions#new'
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
 	resources :sessions
 	resources :pages
 	resources :uploads
-	post 'delete_upload', to: 'uploads#destroy'
+	post 'uploads_destroy', to: 'uploads#destroy'
 
 	get 'index', to: 'sessions#index'
 	get 'panel', to: 'sessions#new'
