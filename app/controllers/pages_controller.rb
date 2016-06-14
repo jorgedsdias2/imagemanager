@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:destroy]
 
 	def index
-		@pages = Page.all
+		@pages = Page.includes(:user).all
 	end
 
 	def new
