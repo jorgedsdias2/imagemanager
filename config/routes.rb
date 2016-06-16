@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'page/index'
-
-  get 'uploads/index'
-
 	root to: 'sessions#new'
 
 	resources :users
