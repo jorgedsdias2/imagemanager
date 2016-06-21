@@ -17,4 +17,5 @@
 /tmp
 /public/assets
 /public/images
+/public/ckeditor_assets/
 /db/schema.rb
