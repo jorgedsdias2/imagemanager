@@ -7,8 +7,8 @@ class Upload < ActiveRecord::Base
 		has_attached_file :image,
 		{
 			:storage => :ftp,
-			:path => "/{path}/web/teste/images/:style/:id/:filename",
-			:url => "/images/:style/:id/:filename",
+			:path => self.ftp_params(:path),
+			:url => self.ftp_params(:url),
 			:ftp_servers => [
 				{
 					:host => self.ftp_params(:host),

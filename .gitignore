@@ -19,3 +19,4 @@
 /public/images
 /public/ckeditor_assets/
 /db/schema.rb
+/app/models/concerns/myftp.rb
